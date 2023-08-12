@@ -12,7 +12,7 @@ test: test.c libqstr.a
 	$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^
 
 qstr.c.o: qstr.c qstr.h
-	$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $< -c
+	$(CC) -o $@ $(CFLAGS) $< -c
 
 libqstr.a: qstr.c.o
 	$(AR) cr $@ $<
@@ -29,9 +29,9 @@ dist: clean
 	$(RM) libqstr-${VERSION}
 
 install: libqstr.a
-	$(INSTALL) $< $(PREFIX)/$(DESTDIR)/lib
-	$(INSTALL) qstr.h $(PREFIX)/$(DESTDIR)/include
+	$(INSTALL) $< $(DESTDIR)/$(PREFIX)/lib
+	$(INSTALL) qstr.h $(DESTDIR)/$(PREFIX)/include
 
 uninstall:
-	$(RM) $(PREFIX)/$(DESTDIR)/lib/libqstr.a
-	$(RM) $(PREFIX)/$(DESTDIR)/include/qstr.h
+	$(RM) $(DESTDIR)/$(PREFIX)/lib/libqstr.a
+	$(RM) $(DESTDIR)/$(PREFIX)/include/qstr.h
